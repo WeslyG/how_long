@@ -1,7 +1,17 @@
-import mongoose from 'mongoose';
+import {Schema, model} from 'mongoose';
 
-export const EventModel = mongoose.model('Events', {
-    name: String,
-    description: String,
-    date: String
+const eventShema = new Schema({
+  name: { type: String, default: ''},
+  description: {type: String, default: ''},
+  date: {type: String, default: ''}
 });
+
+eventShema.set('toJSON', {
+  virtuals: true,
+  versionKey: false,
+  transform: (doc, ret) => {
+    delete ret._id;
+  }
+});
+
+export const EventModel = model('Events', eventShema);

@@ -45,6 +45,14 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "func-style": [
+            "error",
+            "declaration",
+            { "allowArrowFunctions": true }
+         ],
+         "require-await": [
+           "error"
+         ]
     }
 }
