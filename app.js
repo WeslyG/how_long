@@ -7,9 +7,15 @@ import routerEvent from './src/routes/events';
 const app = express();
 
 const connectDb = async () => {
-  await mongoose.connect('mongodb://localhost:27017/db', {
-    useUnifiedTopology: true
-  });
+  try {
+    await mongoose.connect('mongodb://localhost:27017/db', {
+      useUnifiedTopology: true,
+      useCreateIndex: true
+    });
+    console.log('MongoDB connected...');
+  } catch(err) {
+    console.log(err);
+  }
 };
 
 connectDb();
@@ -28,3 +34,5 @@ app.use('/', routerEvent);
 app.listen(process.env.PORT || 3000, () => {
   console.log(`I am started on port ${process.env.PORT || 3000}`);
 });
+
+export default app;

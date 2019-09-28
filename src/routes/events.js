@@ -6,19 +6,10 @@ import { deleteEvent } from '../controllers/Events/deleteEvent';
 const router = express.Router();
 
 router.route('/events')
-  .get(async (req, res) => {
-    // TODO: returun all from user
-    res.send(await getEvents());
-  })
-  .post(async (req, res) => {
-    res.send(await createEvent(req.body));
-  })
-  .put(async (req, res) => {
-    res.send(await updateEvent(req.body));
-  })
-  .delete( async (req, res) => {
-    res.send(await deleteEvent(req.body));
-  });
+  .get(getEvents)
+  .post(createEvent)
+  .put(updateEvent)
+  .delete(deleteEvent);
 
 router.route('/events/:id')
   .get(async (req, res) => {
@@ -32,4 +23,3 @@ router.route('/events/:id')
   });
 
 export default router;
-

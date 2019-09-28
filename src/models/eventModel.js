@@ -4,6 +4,8 @@ const eventShema = new Schema({
   name: { type: String, default: ''},
   description: {type: String, default: ''},
   date: {type: String, default: ''}
+}, {
+  timestamps: true
 });
 
 eventShema.set('toJSON', {

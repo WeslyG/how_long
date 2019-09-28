@@ -1,20 +1,21 @@
 import { EventModel } from '../../models/eventModel';
 
-export const getEvents = async id => {
-  if (!id) {
+export const getEvents = async (req, res) => {
+  if (req.params.id) {
     try {
-      return await EventModel.find({});
+      const eventlist = await EventModel.findById(req.params.id);
+      res.status(200).send(eventlist);
     } catch (err) {
       console.log(err);
-      return err;
+      res.status(500).send({ message: 'something when wrong'});
     }
   } else {
     try {
-      return await EventModel.findById(id);
+      const eventslist = await EventModel.find({});
+      res.status(200).send(eventslist);
     } catch (err) {
       console.log(err);
-      return err;
+      res.status(500).send({ message: 'something when wrong'});
     }
   }
-
 };
